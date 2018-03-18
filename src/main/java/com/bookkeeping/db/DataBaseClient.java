@@ -1,16 +1,19 @@
 package com.bookkeeping.db;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public interface DataBaseClient {
 
-    public void select(String filter);
+    public ResultSet select(String filter, String table) throws SQLException;
 
-    public void insert();
+    public boolean insert(String[] data, String table);
 
-    public void delete();
+    public boolean delete(String filter, String table);
 
-    public void update();
+    public void update(String[] data, String table);
 
-    public void getById(int id);
+    public ResultSet getById(int id, String table) throws SQLException;
 
-    public void getBy(String filter);
+    public ResultSet getBy(String filter, String table) throws SQLException;
 }
