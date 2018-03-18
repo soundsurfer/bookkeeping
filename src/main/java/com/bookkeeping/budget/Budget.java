@@ -1,6 +1,6 @@
 package com.bookkeeping.budget;
 
-import com.bookkeeping.com.bookkeeping.db.DataBaseManager;
+import com.bookkeeping.db.DataBaseManager;
 
 import java.util.Scanner;
 
@@ -9,6 +9,7 @@ public class Budget {
     private static int m;
     private static int s;
     private static String p;
+
     public static void budgetRun(String name){
         addMoney();
         spentMoney();
@@ -32,6 +33,6 @@ public class Budget {
         System.out.println("You spent today:" + s);
     }
     private static void createBudget(String name, int m, int s, String p){
-        DataBaseManager.dataBaseCreate(name, m, s, p);
+        DataBaseManager.insert(name, m, s, p);
     }
 }
