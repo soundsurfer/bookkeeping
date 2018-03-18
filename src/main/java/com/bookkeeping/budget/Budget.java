@@ -26,7 +26,7 @@ public class Budget {
     }
     private static void nameProduct(){
         System.out.println("What did you spend money on?");
-        p = scanner.nextLine();
+        p = scanner.next();
     }
     public static void budgetStatus(){
         System.out.println("Now you have:" + m);
