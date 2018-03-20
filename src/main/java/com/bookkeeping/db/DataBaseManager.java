@@ -43,5 +43,8 @@ public class DataBaseManager implements DataBaseClient{
     public ResultSet getBy(String filter, String table) throws SQLException {
         return statement.executeQuery(String.format("select %s from %s",filter,table));
     }
+
+    public static void insert(String name, int m, int s, String p) {
+    }
 }
 
