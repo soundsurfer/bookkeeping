@@ -3,6 +3,8 @@ package com.bookkeeping.utility;
 import com.bookkeeping.budget.Budget;
 import com.bookkeeping.db.DataBaseManager;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Menu {
@@ -16,7 +18,15 @@ public class Menu {
             taskMenu1();
         }
         if (scanner.hasNext("budgetstatus")) {
-            System.out.println("Right now, you have:" + DataBaseManager.getByBudget(name));
+            try {
+                System.out.println("Right now, you have:");
+                ResultSet rs = DataBaseManager.getByBudget(name);
+                while (rs.next()){
+                    System.out.println(rs.getString("BUDGET"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
     public static void taskMenu1(){
