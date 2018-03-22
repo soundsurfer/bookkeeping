@@ -52,9 +52,19 @@ public class DataBaseManager {
 
     public static ResultSet getById(int id) {
         try {
-            Statement statement = DataBaseManager.getConnection().createStatement();
+            statement = DataBaseManager.getConnection().createStatement();
             return statement.executeQuery(String.format("SELECT * FROM BOOKKEEPING WHERE id = '%d'", id));
         } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    public static ResultSet getByBudget(String name){
+        try {
+
+            statement = DataBaseManager.getConnection().createStatement();
+            return statement.executeQuery(String.format("SELECT BUDGET FROM BOOKKEEPING WHERE name = '%s'",name));
+        }catch (SQLException e){
             e.printStackTrace();
         }
         return null;
