@@ -16,9 +16,7 @@ public class Menu {
             taskMenu1();
         }
         if (scanner.hasNext("budgetstatus")) {
-            System.out.println("Please, enter your name for viewing your budget:");
-            scanner.hasNext(name);
-            DataBaseManager.getByBudget(name);
+            System.out.println("Right now, you have:" + DataBaseManager.getByBudget(name));
         }
     }
     public static void taskMenu1(){
