@@ -29,11 +29,11 @@ public class DataBaseManager {
         return connection;
     }
 
-    public static void insert(String name, int m, int s, String p) {
+    public static void insert(String name, int m) {
         try {
             statement = DataBaseManager.getConnection().createStatement();
-            statement.execute(String.format("INSERT INTO BOOKKEEPING (name, budget, spentmoney, nameproduct) " +
-                    "VALUES ('%s',%d,%d,'%s')", name, m, s, p));
+            statement.execute(String.format("INSERT INTO BOOKKEEPING (name, budget) " +
+                    "VALUES ('%s',%d)", name, m));
         } catch (SQLException e) {
             System.out.println("Can't create statement!!!");
             e.printStackTrace();
@@ -69,6 +69,16 @@ public class DataBaseManager {
         }
         return null;
     }
+    public static int updateBudget(int sm, String name){
 
+        try {
+            statement = DataBaseManager.getConnection().createStatement();
+            return statement.executeUpdate(String.format
+                    ("UPDATE BOOKKEEPING SET budget = '%d' WHERE name = '%s'", sm, name));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return sm;
+    }
 }
 
