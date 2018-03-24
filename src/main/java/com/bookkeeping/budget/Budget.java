@@ -19,8 +19,7 @@ public class Budget {
     }
 
     public static void spendingRun(int sm, String name) {
-        spentMoney(name);
-        updateBudget(sm, name);
+        spentMoney(name, sm);
         nameProduct();
     }
 
@@ -29,13 +28,14 @@ public class Budget {
         m = scanner.nextInt();
     }
 
-    private static void spentMoney(String name){
+    private static void spentMoney(String name, int sm){
         System.out.println("How much money you spent today?");
         s = scanner.nextInt();
         try {
             ResultSet rs = DataBaseManager.getByBudget(name);
             while(rs.next()) {
-                sm = s - rs.getInt("BUDGET");
+                sm = rs.getInt("BUDGET") - s;
+                updateBudget(sm, name);
             }
         }catch (SQLException e){
             e.printStackTrace();
