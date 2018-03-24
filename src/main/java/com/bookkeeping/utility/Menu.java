@@ -12,7 +12,8 @@ public class Menu {
     public static void menu1() {
         System.out.println("Hi! My name is Bookkeeping Manager, what's your name?");
         String name = scanner.next();
-        System.out.println("Hi! " + name + ", what you need?");
+        if (Budget.checkUser()){
+            System.out.println("Hi! " + name + ", what you need?");
         if (scanner.hasNext("newbudget")) {
             Budget.budgetRun(name);
             taskMenu1();
@@ -21,7 +22,7 @@ public class Menu {
             try {
                 System.out.println("Right now, you have:");
                 ResultSet rs = DataBaseManager.getByBudget(name);
-                while (rs.next()){
+                while (rs.next()) {
                     System.out.println(rs.getString("BUDGET"));
                     taskMenu1();
                 }
@@ -29,11 +30,15 @@ public class Menu {
                 e.printStackTrace();
             }
         }
-        if (scanner.hasNext("spent")){
+        if (scanner.hasNext("spent")) {
             Budget.spendingRun(name);
         }
-        if (scanner.hasNext("search")){
+        if (scanner.hasNext("search")) {
             searching();
+        }
+    }else{
+            System.out.println(String.format("User with this name %s doesn't exist.\nCreate account",name ));
+            Budget.budgetRun(name);
         }
     }
     public static void taskMenu1() {

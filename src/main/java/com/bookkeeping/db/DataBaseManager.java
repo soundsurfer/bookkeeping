@@ -69,12 +69,12 @@ public class DataBaseManager{
         }
         return null;
     }
-    public static int updateBudget(int sm,String product, String name){
+    public static int updateBudget(int sm,int spentToday,String product, String name){
 
         try {
             statement = DataBaseManager.getConnection().createStatement();
             return statement.executeUpdate(String.format
-                    ("UPDATE BOOKKEEPING SET budget = %d, nameproduct = '%s' WHERE name = '%s'", sm,product, name));
+                    ("UPDATE BOOKKEEPING SET budget = %d, spentmoney = %d, NAMEPRODUCT = '%s' WHERE name = '%s';", sm,spentToday,product, name));
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -15,7 +15,6 @@ public class Budget {
 
     public static void spendingRun(String name) {
         spentMoney(name);
-        nameProduct();
     }
 
     private static int addMoney() {
@@ -29,7 +28,11 @@ public class Budget {
         try {
             ResultSet rs = DataBaseManager.getByBudget(name);
             while (rs.next()) {
-                DataBaseManager.updateBudget(rs.getInt("BUDGET") - spentMoneyToday,nameProduct(), name);
+                if (rs.getInt("BUDGET") < spentMoneyToday) {
+                    System.out.println("You have not enough money,try again");
+                    spentMoney(name);
+                } else
+                    DataBaseManager.updateBudget(rs.getInt("BUDGET") - spentMoneyToday, spentMoneyToday, nameProduct(), name);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -45,4 +48,7 @@ public class Budget {
         DataBaseManager.insert(name, m);
     }
 
+    public static boolean checkUser() {
+        return true;
+    }
 }
