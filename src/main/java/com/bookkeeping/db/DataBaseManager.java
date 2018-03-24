@@ -74,7 +74,7 @@ public class DataBaseManager {
         try {
             statement = DataBaseManager.getConnection().createStatement();
             return statement.executeUpdate(String.format
-                    ("UPDATE BOOKKEEPING SET budget = '%d' WHERE name = '%s'", sm, name));
+                    ("UPDATE BOOKKEEPING SET budget = %d WHERE name = '%s'", sm, name));
         } catch (SQLException e) {
             e.printStackTrace();
         }
