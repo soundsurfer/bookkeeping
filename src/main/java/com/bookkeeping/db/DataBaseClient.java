@@ -10,7 +10,5 @@ public interface DataBaseClient {
 
     public void update();
 
-    public void getById(int id);
-
     public void getBy(String filter);
 }

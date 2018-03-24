@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import static com.bookkeeping.budget.Budget.sm;
-
 public class Menu {
     static Scanner scanner = new Scanner(System.in);
     public static void menu1() {
@@ -32,7 +30,7 @@ public class Menu {
             }
         }
         if (scanner.hasNext("spent")){
-            Budget.spendingRun(sm, name);
+            Budget.spendingRun(name);
         }
         if (scanner.hasNext("search")){
             searching();

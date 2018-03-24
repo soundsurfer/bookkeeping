@@ -8,45 +8,41 @@ import java.util.Scanner;
 
 public class Budget {
     static Scanner scanner = new Scanner(System.in);
-    private static int m;
-    private static int s;
-    private static String p;
-    public static int sm;
 
     public static void budgetRun(String name) {
-        addMoney();
-        createBudget(name, m);
+        createBudget(name, addMoney());
     }
 
-    public static void spendingRun(int sm, String name) {
-        spentMoney(name, sm);
+    public static void spendingRun(String name) {
+        spentMoney(name);
         nameProduct();
     }
 
-    private static void addMoney() {
+    private static int addMoney() {
         System.out.println("Please, enter how much money you add to budget:");
-        m = scanner.nextInt();
+        return scanner.nextInt();
     }
 
-    private static void spentMoney(String name, int sm){
+    private static void spentMoney(String name) {
         System.out.println("How much money you spent today?");
-        s = scanner.nextInt();
+        int spentMoneyToday = scanner.nextInt();
         try {
             ResultSet rs = DataBaseManager.getByBudget(name);
-            while(rs.next()) {
-                sm = rs.getInt("BUDGET") - s;
-                updateBudget(sm, name);
+            while (rs.next()) {
+                DataBaseManager.updateBudget(rs.getInt("BUDGET") - spentMoneyToday,nameProduct(), name);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    private static void nameProduct(){
+
+    private static String nameProduct() {
         System.out.println("What did you spend money on?");
-        p = scanner.next();
+        return scanner.next();
     }
-    private static void createBudget(String name, int m){
+
+    private static void createBudget(String name, int m) {
         DataBaseManager.insert(name, m);
     }
-    private static void updateBudget (int sm, String name) {DataBaseManager.updateBudget(sm,name);}
+
 }

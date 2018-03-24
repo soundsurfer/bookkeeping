@@ -4,7 +4,7 @@ import com.bookkeeping.utility.Settings;
 
 import java.sql.*;
 
-public class DataBaseManager {
+public class DataBaseManager{
     private static Connection connection = null;
 
     private static Statement statement;
@@ -69,16 +69,17 @@ public class DataBaseManager {
         }
         return null;
     }
-    public static int updateBudget(int sm, String name){
+    public static int updateBudget(int sm,String product, String name){
 
         try {
             statement = DataBaseManager.getConnection().createStatement();
             return statement.executeUpdate(String.format
-                    ("UPDATE BOOKKEEPING SET budget = %d, WHERE name = '%s'", sm, name));
+                    ("UPDATE BOOKKEEPING SET budget = %d, nameproduct = '%s' WHERE name = '%s'", sm,product, name));
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return sm;
     }
+
 }
 
