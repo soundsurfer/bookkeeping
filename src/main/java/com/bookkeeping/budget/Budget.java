@@ -34,7 +34,9 @@ public class Budget {
         s = scanner.nextInt();
         try {
             ResultSet rs = DataBaseManager.getByBudget(name);
-            sm = s - rs.getInt("BUDGET");
+            while(rs.next()) {
+                sm = s - rs.getInt("BUDGET");
+            }
         }catch (SQLException e){
             e.printStackTrace();
         }
