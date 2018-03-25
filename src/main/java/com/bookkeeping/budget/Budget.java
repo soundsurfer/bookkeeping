@@ -9,8 +9,8 @@ import java.util.Scanner;
 public class Budget {
     static Scanner scanner = new Scanner(System.in);
 
-    public static void budgetRun(String name) {
-        createBudget(name, addMoney());
+    public static void createBudget(String name) {
+            DataBaseManager.insert(name, addMoney());
     }
 
     public static void spendingRun(String name) {
@@ -47,10 +47,6 @@ public class Budget {
     private static String nameProduct() {
         System.out.println("What did you spend money on?");
         return scanner.next();
-    }
-
-    private static void createBudget(String name, int m) {
-        DataBaseManager.insert(name, m);
     }
 
     public static boolean isUserExist(String name) {
