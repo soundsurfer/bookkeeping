@@ -19,11 +19,12 @@ public class Budget {
 
     private static int addMoney() {
         System.out.println("Please, enter how much money you add to budget:");
-        if(scanner.nextInt() <= 0){
+        int addingMoney = scanner.nextInt();
+        if(addingMoney <= 0){
             System.out.println("Please , enter valid sum of money!");
             return scanner.nextInt();
         }else
-        return scanner.nextInt();
+        return addingMoney;
     }
 
     private static void spentMoney(String name) {
