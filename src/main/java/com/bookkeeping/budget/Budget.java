@@ -52,7 +52,18 @@ public class Budget {
         DataBaseManager.insert(name, m);
     }
 
-    public static boolean checkUser() {
-        return true;
+    public static boolean checkUser(String name) {
+        ResultSet rs = DataBaseManager.getByName(name);
+        try {
+            while(rs.next()){
+                if(rs.getString("name").equals(name))
+                    return false;
+                else
+                    return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
