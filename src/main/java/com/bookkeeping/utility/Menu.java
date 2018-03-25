@@ -14,10 +14,6 @@ public class Menu {
         String name = scanner.next();
         if (Budget.checkUser()){
             System.out.println("Hi! " + name + ", what you need?");
-        if (scanner.hasNext("newbudget")) {
-            Budget.budgetRun(name);
-            taskMenu1();
-        }
         if (scanner.hasNext("budgetstatus")) {
             try {
                 System.out.println("Right now, you have:");
@@ -32,6 +28,7 @@ public class Menu {
         }
         if (scanner.hasNext("spent")) {
             Budget.spendingRun(name);
+            taskMenu1();
         }
         if (scanner.hasNext("search")) {
             searching();
