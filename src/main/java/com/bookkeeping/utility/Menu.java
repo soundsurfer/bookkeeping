@@ -12,7 +12,7 @@ public class Menu {
     public static void menu1() {
         System.out.println("Hi! My name is Bookkeeping Manager, what's your name?");
         String name = scanner.next();
-        if (Budget.checkUser()){
+        if (Budget.checkUser(name)){
             System.out.println("Hi! " + name + ", what you need?");
         if (scanner.hasNext("budgetstatus")) {
             try {
