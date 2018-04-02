@@ -35,7 +35,7 @@ public class Menu {
         }
     }else{
             System.out.println(String.format("User with this name %s doesn't exist.\nCreate account",name ));
-            Budget.budgetRun(name);
+            Budget.createBudget(name);
         }
     }
     public static void taskMenu1() {
